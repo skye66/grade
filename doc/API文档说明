@@ -1,0 +1,427 @@
+API文档说明
+
+学生管理
+{
+
+	##################
+	desc:查找一个学生find
+	path:get grade/student/find
+	pram:student_id
+
+	student_id=31150071xx
+	return:
+	{
+	    "state": 1,
+	    "msg": "请求成功",
+	    "data": {
+	        "studentId": "311500xxx",
+	        "studentName": "xxx",
+	        "studentGender": 0,
+	        "gender": "男",
+	        "studentCollege": "应用数学学院",
+	        "studentGrade": "大四"
+	    }
+	}
+	##################
+	desc:add_course添加选课
+	path:get /grade/student/add_course
+	pram:student_id course_id
+
+	student_id=3115002226&course_id=0
+	return:
+	{
+	    "state": 1,
+	    "msg": "请求成功",
+	    "data": {
+	        "scoreId": 14,
+	        "courseId": "0",
+	        "studentId": "3115002226",
+	        "isExam": 0
+	    }
+	}
+	##################
+	desc:查询课程成绩
+	path:get grade/student/query_score
+	pram: course_id student_id
+
+	?course_id=0&student_id=3115002226
+	return:
+	{
+	    "state": 1,
+	    "msg": "请求成功",
+	    "data": {
+	        "scoreId": 11,
+	        "courseId": "0",
+	        "studentId": "3115002226",
+	        "isExam": 1,
+	        "studentScore": 99
+	    }
+	}
+	##################
+	desc:查询已选课程
+	path:get grade/student/query_select_course
+	pram:course_id student_id
+	?course_id=0&student_id=3115002226
+	return:
+
+	{
+	    "state": 1,
+	    "msg": "请求成功",
+	    "data": {
+	        "scoreId": 14,
+	        "courseId": "0",
+	        "studentId": "3115002226"
+	    }
+	}
+	##################
+	desc:查询选课列表
+	path:get grade/student/query_list_course
+	pram:student_id
+
+	student_id=3115002226
+	return:
+	{
+	    "state": 1,
+	    "msg": "请求成功",
+	    "data": {
+	        "studentId": "3115002226",
+	        "studentName": "刘先生",
+	        "courseList": [
+	            {
+	                "courseId": "0",
+	                "courseName": "软工",
+	                "teacherId": "100",
+	                "coursePeriod": 4,
+	                "courseCredit": 4
+	            },
+	            {
+	                "courseId": "1",
+	                "courseName": "软工",
+	                "teacherId": "100",
+	                "coursePeriod": 3,
+	                "courseCredit": 2
+	            }
+	        ]
+	    }
+	}
+	##################
+
+	desc:查询学生的成绩列表
+	path:get grade/student/query_list_score
+	pram:student_id
+
+	student_id=3115002226
+	return:
+	{
+	    "state": 1,
+	    "msg": "请求成功",
+	    "data": {
+	        "studentId": "3115002226",
+	        "studentName": "刘先生",
+	        "courseScoreDTO": [
+	            {
+	                "courseName": "软工",
+	                "teacherId": "100",
+	                "coursePeriod": 4,
+	                "courseCredit": 4,
+	                "studentScore": 99
+	            },
+	            {
+	                "courseName": "计算机网络",
+	                "teacherId": "101",
+	                "coursePeriod": 3,
+	                "courseCredit": 3,
+	                "studentScore": 100
+	            }
+	        ]
+	    }
+	}
+	##################
+	desc:取消选课
+	path:get /grade/student/cancel_course
+	pram:course_id student_id
+	course_id=2&student_id=3115002226
+	return:
+	{
+	    "state": 1,
+	    "msg": "请求成功"
+	}
+	##################
+}
+
+
+课程管理
+{
+	##################
+	desc:
+	path:post grade/course/add
+	pram:courseName teacherId coursePeriod courseCredit:2
+
+	courseName:软工
+	teacherId:100
+	coursePeriod:3
+	courseCredit:2
+
+	return:
+	{
+    "state": 1,
+    "msg": "请求成功",
+    "data": {
+        "courseId": "71723699",
+        "courseName": "软工",
+        "teacherId": "100",
+        "coursePeriod": 3,
+        "courseCredit": 2
+    }
+	}
+	##################
+	desc:删除课程
+	path:get grade/course/delete
+	pram:course_id
+	course_id=03093836
+	return:
+	{
+    "state": 1,
+    "msg": "请求成功",
+    "data": "COURSE_DELETE_SUCCESS"
+	}	
+	##################
+	desc:查找选课
+	path:get /grade/course/find
+	pram: course_id
+	course_id=1
+	return:
+	{
+    "state": 1,
+    "msg": "请求成功",
+    "data": {
+        "courseId": "1",
+        "courseName": "软工",
+        "teacherId": "100",
+        "coursePeriod": 3,
+        "courseCredit": 2
+    }
+	}
+	##################
+	desc: 更新课程
+	path: post grade/course/update
+	pram: courseName teacherId coursePeriod courseCredit courseId
+
+	courseName:软工
+	teacherId:100
+	coursePeriod:3
+	courseCredit:2
+	courseId:1
+	return:
+	{
+    "state": 1,
+    "msg": "请求成功",
+    "data": {
+        "courseId": "1",
+        "courseName": "软工",
+        "teacherId": "100",
+        "coursePeriod": 3,
+        "courseCredit": 2
+    }
+	}
+	##################
+	desc:查找课程列表
+	path:get grade/course/list
+	pram: 无
+	return:
+	{
+    "state": 1,
+    "msg": "请求成功",
+    "data": {
+        "content": [
+            {
+                "courseId": "0",
+                "courseName": "软工",
+                "teacherId": "100",
+                "coursePeriod": 4,
+                "courseCredit": 4
+            },
+            {
+                "courseId": "1",
+                "courseName": "软工",
+                "teacherId": "100",
+                "coursePeriod": 3,
+                "courseCredit": 2
+            }
+        ],
+        "pageable": {
+            "sort": {
+                "sorted": false,
+                "unsorted": true,
+                "empty": true
+            },
+            "offset": 0,
+            "pageSize": 10,
+            "pageNumber": 0,
+            "paged": true,
+            "unpaged": false
+        },
+        "last": true,
+        "totalElements": 4,
+        "totalPages": 1,
+        "number": 0,
+        "size": 10,
+        "sort": {
+            "sorted": false,
+            "unsorted": true,
+            "empty": true
+        },
+        "numberOfElements": 4,
+        "first": true,
+        "empty": false
+    }
+	}
+	##################
+	
+
+
+
+
+	
+}
+用户管理
+{
+	##################
+	desc:学生登陆
+	path:grade/student_login
+	pram:username password
+
+	username:3115002228
+	password:password
+	return:
+	{
+    "state": 1,
+    "msg": "请求成功",
+    "data": {
+        "studentId": "3115002228",
+        "studentName": "卢先生",
+        "studentGender": 0,
+        "studentCollege": "应用数学学院",
+        "studentGrade": "大四"
+    }
+	}
+	##################
+	desc:教师注册
+	path:post grade/teacher_register
+	pram: teacherId username password teacherName teacherGender teacherTitle teacherPosition
+
+	teacherId:103
+	username:admi
+	password:admin
+	teacherName:马马腾
+	teacherGender:0
+	teacherTitle:教授
+	teacherPosition:董事
+	return:
+	{
+    "state": 1,
+    "msg": "请求成功",
+    "data": {
+        "teacherId": "72405092",
+        "teacherName": "马马腾",
+        "teacherGender": 0,
+        "teacherTitle": "教授",
+        "teacherPosition": "董事"
+    }
+	}
+	##################
+	desc:教师登陆
+	path:post grade/teacher_login
+	pram: username password
+
+	username:admin
+	password:admin
+
+	return:{
+    "state": 1,
+    "msg": "请求成功",
+    "data": {
+        "teacherId": "103",
+        "teacherName": "马马腾",
+        "teacherGender": 0,
+        "teacherTitle": "教授",
+        "teacherPosition": "董事"
+    }
+	}
+	##################
+
+}
+教师管理
+{
+	##################
+	desc:获取教工信息
+	path:get grade/teacher/query
+	pram: teacher_id
+	teacher_id=100
+	return:
+	{
+	    "state": 1,
+	    "msg": "请求成功",
+	    "data": {
+	        "teacherId": "100",
+	        "teacherName": "lxy",
+	        "teacherGender": 1,
+	        "teacherTitle": "教授",
+	        "teacherPosition": "教师"
+	    }
+	}
+	##################
+	desc:保存学生成绩（添加或更新）
+	path:grade/teacher/save_student_score
+	pram: courseId studentId studentScore score
+		courseId:1
+		studentId:311500xxx
+		studentScore:100
+		score:100
+	return:
+	{
+	    "state": 1,
+	    "msg": "请求成功",
+	    "data": {
+	        "courseId": "1",
+	        "studentId": "311500xxx",
+	        "isExam": 1,
+	        "studentScore": 100
+	    }
+	}
+	##################
+	desc: 添加学生用户
+	path:post grade/teacher/add_student
+	pram: studentId username password studentName studentGender studentCollege studentGrade
+
+		studentId:69688532
+		username:adminadmin
+		password:admin
+		studentName:喜大大
+		studentGender:0
+		studentCollege:数学
+		studentGrade:大三
+	return:
+	{
+	    "state": 1,
+	    "msg": "请求成功",
+	    "data": {
+	        "studentId": "69688532",
+	        "studentName": "喜大大",
+	        "studentGender": 0,
+	        "studentCollege": "数学",
+	        "studentGrade": "大三"
+	    }
+	}
+	##################
+	desc:
+	path:get grade/teacher/delete_student
+	pram: student_id
+	student_id=69688532
+	return:
+	{
+	    "state": 1,
+	    "msg": "请求成功"
+	}
+	##################
+}
