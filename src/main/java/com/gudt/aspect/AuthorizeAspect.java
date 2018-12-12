@@ -4,6 +4,7 @@ import com.gudt.constant.CookieConstant;
 import com.gudt.exception.AuthorizeException;
 import com.gudt.vo.CookieUtil;
 import lombok.extern.slf4j.Slf4j;
+import org.apache.logging.log4j.util.Strings;
 import org.aspectj.lang.annotation.Aspect;
 import org.aspectj.lang.annotation.Before;
 import org.aspectj.lang.annotation.Pointcut;
@@ -41,7 +42,13 @@ public class AuthorizeAspect {
         String tokenSession = (String) session.getAttribute(CookieConstant.TOKEN);
         //获取客户端中的值
         Cookie cookie = CookieUtil.getCookie(request, CookieConstant.TOKEN);
-        String tokenCookie = cookie.getValue();
+        String tokenCookie;
+        try {
+             tokenCookie = cookie.getValue();
+        }catch (NullPointerException e){
+            log.info("【用户未登录】");
+            throw new AuthorizeException();
+        }
         if (tokenCookie.equals(tokenSession)){
             log.info("【用户登陆正确】");
         }else throw new AuthorizeException();
