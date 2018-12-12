@@ -1,6 +1,5 @@
 package com.gudt.controller;
 
-import antlr.StringUtils;
 import com.gudt.dataobject.Student;
 import com.gudt.enums.ResultEnum;
 import com.gudt.enums.ScoreEnum;
