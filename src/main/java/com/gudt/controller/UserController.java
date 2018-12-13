@@ -53,7 +53,7 @@ public class UserController {
                                  HttpSession session){
         //1.学生登陆
         if (Strings.isBlank(username)&&Strings.isBlank(password)){
-            log.info("【用户登陆】注册信息不完整");
+            log.info("【用户登陆】登陆信息不完整");
             return ResultVoUtil.error(ResultEnum.PARAM_ERROR.getMsg());
         }
         StudentVo studentVo = studentService.find(username, password);
