@@ -1,14 +1,14 @@
 spring:
   profiles:
-    active: prod
-  #jpdÅäÖÃ
+    active: dev
+  #jpdé…ç½®
   jpa:
     hibernate:
       ddl-auto: update
-    show-sql: true #ÆôÓÃÊä³öÈÕÖ¾
-    database: mysql #Êı¾İ¿âÀàĞÍ
+    show-sql: true #å¯ç”¨è¾“å‡ºæ—¥å¿—
+    database: mysql #æ•°æ®åº“ç±»å‹#ç©ºå€¼ï¼Œä¸æ ¼å¼åŒ–jsonæ•°æ®
   jackson:
-    default-property-inclusion: non_null #¿ÕÖµ£¬²»¸ñÊ½»¯jsonÊı¾İ
+    default-property-inclusion: non_null #ä¸å°†ç©ºå€¼æ ¼å¼åŒ–
 server:
   servlet:
     context-path: /grade

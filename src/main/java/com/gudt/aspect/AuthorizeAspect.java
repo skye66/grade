@@ -4,7 +4,6 @@ import com.gudt.constant.CookieConstant;
 import com.gudt.exception.AuthorizeException;
 import com.gudt.vo.CookieUtil;
 import lombok.extern.slf4j.Slf4j;
-import org.apache.logging.log4j.util.Strings;
 import org.aspectj.lang.annotation.Aspect;
 import org.aspectj.lang.annotation.Before;
 import org.aspectj.lang.annotation.Pointcut;
@@ -23,12 +22,13 @@ import javax.servlet.http.HttpSession;
  * @Date 2018/12/8 16:25
  * @Version 1.0
  **/
-@Aspect
-@Component
+//因前端懒于修改框架，故将切点删除，不进行验证
+//@Aspect
+//@Component
 @Slf4j
 public class AuthorizeAspect {
 
-    @Autowired
+
     @Pointcut("execution(public * com.gudt.controller.*.*(..)) && !execution(public * com.gudt.controller.UserController.*(..))")
     public void verifyStudent(){
 
