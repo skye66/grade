@@ -75,7 +75,7 @@ public class ScoreServiceImpl implements ScoreService {
         Score score = scoreRepository.findByStudentIdAndCourseIdAndAndIsExam(studentId, courseId,ScoreEnum.IS_EXAM_FALSE.getCode());
         if (score == null) {
             log.info("【查找选课】，选课不存在");
-            throw new GradeException(ResultEnum.SCORE_EXAM_FALSE);
+            throw new GradeException(ResultEnum.SCORE_EXAM_FALSE_ERROR);
         }
         ScoreExamF scoreExamF = new ScoreExamF();
         BeanUtils.copyProperties(score, scoreExamF);
@@ -142,7 +142,8 @@ public class ScoreServiceImpl implements ScoreService {
         //1.获取学生选课的课程列表
         List<Score> scoreList = scoreRepository.findByStudentIdAndIsExam(studentId, ScoreEnum.IS_EXAM_FALSE.getCode());
         if (scoreList.isEmpty()){
-            throw new GradeException(ResultEnum.SCORE_EXAM_FALSE);
+            log.info("【查询选课列表】,学号{}尚未选课",studentId);
+            throw new GradeException(ResultEnum.SCORE_EXAM_FALSE_ERROR);
         }
         List<String> courseIdList = new ArrayList<>();
         for (Score score: scoreList) {

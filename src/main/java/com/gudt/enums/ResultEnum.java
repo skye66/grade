@@ -23,7 +23,8 @@ public enum ResultEnum implements CodeEnum{
     COURSE_ID_ERROR(21, "课程ID错误"),
     COURSE_PARAM(22,"课程参数不完整"),
     COURSE_DELETE_SUCCESS(23,"课程删除成功"),
-    SCORE_EXAM_FALSE(30,"未参加考核"),
+
+    SCORE_EXAM_FALSE_ERROR(30,"不存在该选课"),
     SCORE_NOT_EXISTS(31,"不存在该成绩"),
     SCORE_NOT_EXISTS_OR_FINISH(32, "不存在该课程或者无法取消考核课程"),
 
