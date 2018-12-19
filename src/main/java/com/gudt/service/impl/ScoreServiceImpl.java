@@ -134,6 +134,7 @@ public class ScoreServiceImpl implements ScoreService {
      */
     @Override
     public SelectCourse listIsExamFalse(String studentId) {
+        log.info("【查询选课列表】,查找学号为[{}]选课信息",studentId);
         SelectCourse selectCourse = new SelectCourse();
         Student student = studentRepository.findByStudentId(studentId);
         if (student == null){
@@ -146,7 +147,6 @@ public class ScoreServiceImpl implements ScoreService {
             log.info("【查询选课列表】,学号[{}]尚未选课",studentId);
             throw new GradeException(ResultEnum.SCORE_EXAM_FALSE_ERROR);
         }
-        log.info("【查询选课列表】,查找学号为[{}]选课信息",studentId);
         List<String> courseIdList = new ArrayList<>();
         for (Score score: scoreList) {
             courseIdList.add(score.getCourseId());
