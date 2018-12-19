@@ -91,6 +91,7 @@ public class ScoreServiceImpl implements ScoreService {
     public Score find(String courseId, String studentId) {
         Score score = scoreRepository.findByStudentIdAndCourseIdAndAndIsExam(studentId, courseId, ScoreEnum.IS_EXAM_TRUE.getCode());
         if (score == null){
+            log.info("【查找课程成绩】学号为空！");
             throw new GradeException(ResultEnum.SCORE_NOT_EXISTS);
         }
         return score;
@@ -179,6 +180,7 @@ public class ScoreServiceImpl implements ScoreService {
 
         Score score = scoreRepository.findByStudentIdAndCourseIdAndAndIsExam(studentId,courseId, ScoreEnum.IS_EXAM_FALSE.getCode());
         if (score == null){
+            log.info("【取消选课】课程不存在或者课程已参加考核");
             throw new GradeException(ResultEnum.SCORE_NOT_EXISTS_OR_FINISH);
         }
         scoreRepository.delete(score);
