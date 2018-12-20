@@ -53,7 +53,7 @@ public class StudentServiceImpl implements StudentService {
 
     public StudentVo save(Student student){
          ;
-        if (studentRepository.findByStudentId(student.getStudentId()) != null){
+        if (studentRepository.findByStudentId(student.getStudentId()) != null || studentRepository.findByStudentId(student.getStudentId()).getUsername() == student.getUsername()){
             throw new GradeException(ResultEnum.STUDENT_ID_EXISTS);
         }
         Student result = studentRepository.save(student);
