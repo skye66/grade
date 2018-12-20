@@ -3,6 +3,8 @@ package com.gudt.service;
 import com.gudt.dataobject.Student;
 import com.gudt.vo.StudentVo;
 
+import java.util.List;
+
 /**
  * @Description
  * @Author Skye
@@ -15,4 +17,5 @@ public interface StudentService {
     StudentVo find(String username, String password);
     StudentVo save(Student student);
     void delete(String studentId);
+    List<StudentVo> findListStudent();
 }

@@ -11,6 +11,7 @@ import com.gudt.util.RandomKeyUtil;
 import com.gudt.util.ResultVoUtil;
 import com.gudt.vo.ResultVo;
 import com.gudt.vo.ScoreVo;
+import com.gudt.vo.StudentVo;
 import com.gudt.vo.TeacherVo;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.logging.log4j.util.Strings;
@@ -20,6 +21,7 @@ import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
+import java.util.List;
 
 /**
  * @Description 教师控制器，查看基本信息，添加课程，评分等
@@ -100,5 +102,14 @@ public class TeacherController {
         }
         studentService.delete(studentId);
         return ResultVoUtil.success();
+    }
+
+    /**
+     * 查找所有的学生列表
+     * @return
+     */
+    @GetMapping("/list_student")
+    public ResultVo<List<StudentVo>> listStudent(){
+        return ResultVoUtil.success(studentService.findListStudent());
     }
 }

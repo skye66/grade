@@ -18,7 +18,7 @@ public enum ResultEnum implements CodeEnum{
     STUDENT_ID_EMPTY(10,"学号不能为空"),
     STUDENT_ID_NOT_EXISTS(11,"学号不存在"),
     STUDENT_ID_EXISTS(12,"学号或用户名已存在"),
-    STUDENT_REGISTER_ERROR(12, "创建失败"),
+    STUDENT_REGISTER_ERROR(13, "创建失败"),
     COURSE_IS_EMPTY(20,"课程为空"),
     COURSE_ID_ERROR(21, "课程ID错误"),
     COURSE_PARAM(22,"课程参数不完整"),

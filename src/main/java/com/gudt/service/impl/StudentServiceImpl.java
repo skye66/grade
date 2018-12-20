@@ -7,9 +7,13 @@ import com.gudt.repository.StudentRepository;
 import com.gudt.service.StudentService;
 import com.gudt.vo.StudentVo;
 import lombok.extern.slf4j.Slf4j;
+import net.bytebuddy.implementation.bytecode.Throw;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * @Description
@@ -72,5 +76,25 @@ public class StudentServiceImpl implements StudentService {
         }
         studentRepository.delete(student);
         log.info("【删除学生】删除成功，学号为={}",studentId);
+    }
+
+    public List<StudentVo> findListStudent(){
+
+        List<Student> studentList = studentRepository.findAll();
+        if (studentList.isEmpty()){
+            log.info("【查找学生】学生列表为空");
+            throw new GradeException(ResultEnum.STUDENT_ID_NOT_EXISTS);
+        }
+        return converterStudentToVo(studentList);
+    }
+    private List<StudentVo> converterStudentToVo(List<Student> studentList){
+        List<StudentVo> studentVoList = new ArrayList<>();
+        for (Student student : studentList
+             ) {
+            StudentVo studentVo = new StudentVo();
+            BeanUtils.copyProperties(student,studentVo);
+            studentVoList.add(studentVo);
+        }
+        return studentVoList;
     }
 }
