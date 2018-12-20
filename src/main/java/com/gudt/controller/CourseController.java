@@ -32,7 +32,7 @@ public class CourseController {
     private CourseService courseService;
     //添加课程
     @PostMapping("/add")
-    public ResultVo<Course> add(@Valid Course course,
+    public ResultVo<Course> add(@Valid @RequestBody Course course,
                       BindingResult bindingResult){
         if (bindingResult.hasErrors()){
             log.error(bindingResult.getFieldError().getDefaultMessage());
@@ -44,7 +44,7 @@ public class CourseController {
     }
     //更新课程
     @PostMapping("/update")
-    public ResultVo<Course> update(@Valid Course course,
+    public ResultVo<Course> update(@Valid @RequestBody Course course,
                                    BindingResult bindingResult){
         if (bindingResult.hasErrors()){
             log.error(bindingResult.getFieldError().getDefaultMessage());

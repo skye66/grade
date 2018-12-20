@@ -58,7 +58,7 @@ public class TeacherController {
      * @return
      */
     @PostMapping("/save_student_score")
-    public ResultVo saveStudentScore(@Valid ScoreVo scoreVo,
+    public ResultVo saveStudentScore(@Valid @RequestBody ScoreVo scoreVo,
                                      BindingResult bindingResult){
         if (bindingResult.hasErrors()){
             return ResultVoUtil.error(bindingResult.getFieldError().getDefaultMessage());
@@ -75,7 +75,7 @@ public class TeacherController {
      * @return
      */
     @PostMapping("/add_student")
-    public ResultVo studentRegister(@Valid Student student,
+    public ResultVo studentRegister(@Valid @RequestBody Student student,
                                     BindingResult bindingResult){
         if (bindingResult.hasErrors()){
             log.info("【用户注册】注册信息不完整");

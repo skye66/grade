@@ -17,6 +17,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
@@ -94,7 +95,7 @@ public class UserController {
      * @return
      */
     @PostMapping("/teacher_register")
-    public ResultVo teacherRegister(@Valid Teacher teacher,
+    public ResultVo teacherRegister(@Valid @RequestBody Teacher teacher,
                                     BindingResult bindingResult){
         if (bindingResult.hasErrors()){
             log.info("【用户注册】注册信息不完整");
