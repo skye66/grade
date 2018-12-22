@@ -449,5 +449,29 @@ API文档说明
     ]
 }
 	##################
+	desc: 查找所有的学生
+	path:get grade/teacher/list_student
+	pram: 无
+	return:
+{
+    "state": 1,
+    "msg": "请求成功",
+    "data": [
+        {
+            "studentId": "31150071xx",
+            "studentName": "马云",
+            "studentGender": 0,
+            "studentCollege": "商务英语",
+            "studentGrade": "老腊肉"
+        },
+        {
+            "studentId": "69688532",
+            "studentName": "喜大大",
+            "studentGender": 0,
+            "studentCollege": "数学",
+            "studentGrade": "大三"
+        }
+    ]
+}
 
 }
